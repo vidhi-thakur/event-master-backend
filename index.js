@@ -1,10 +1,11 @@
 const express = require('express')
-const app = express()
-const PORT = 3001
+const dotenv = require('dotenv').config()
 
-app.get('/', (req, res) => {
-    res.send("Hello world!!!")
-})
+const app = express()
+const PORT = process.env.PORT || 3000
+
+app.use('/api/event', require('./routes/single_event.js'));
+app.use('/api/events', require('./routes/events.js'));
 
 app.listen(PORT, () => {
     console.log("listening to port ", PORT);
