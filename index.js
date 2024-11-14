@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json());
 
-app.use('/api/event', require('./routes/single_event.js'));
-app.use('/api/events', require('./routes/events.js'));
+app.use('/api/event', require('./api/event.js'));
+app.use('/api/allevents', require('./api/allevents.js'));
 
 app.listen(PORT, () => {
     console.log("listening to port ", PORT);
