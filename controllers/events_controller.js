@@ -8,7 +8,8 @@ const getAllEvents = async (req, res) => {
 
         await client.connect();
         const events = await db.collection("events").find().skip(skip).limit(limit).toArray();
-        res.send({ success: true, events })
+        const hasMore = await db.collection("events").countDocuments() > (page * limit);
+        res.send({ success: true, events, hasMore })
     } catch (error) {
         console.log(error)
         res.status(500).send({ error: 'Failed to fetch events' });
